@@ -3,8 +3,8 @@ from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for your app
-socketio = SocketIO(app, cors_allowed_origins="*")  # Add cors_allowed_origins parameter
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 class TaskRunner:
     logs = {}
@@ -22,15 +22,16 @@ def start_task():
     task_runner = TaskRunner()
     parameters = request.json
     task_runner.start(parameters)
+    socketio.emit('log', {'message': 'Task finished'}, namespace='/')
     return jsonify({'status': 'Task started'})
 
 @socketio.on('connect')
 def handle_connect():
-    emit('connected', {'status': 'Connected'}, namespace='/')  # Pass the 'namespace' argument
+    emit('connected', {'status': 'Connected'})
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    emit('disconnected', {'status': 'Disconnected'}, namespace='/')  # Pass the 'namespace' argument
+    emit('disconnected', {'status': 'Disconnected'})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)  # Add debug=True parameter
+    socketio.run(app, debug=True)
