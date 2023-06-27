@@ -1,0 +1,23 @@
+.task-starter-container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 30%;
+  height: 70%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: rgb(15, 15, 15);
+}
+.form-container {
+  height: 80%;
+  width: 95%;
+}
+
+.input-container {
+  height: 80%;
+  width: 95%;
+  overflow-y: auto;
+}

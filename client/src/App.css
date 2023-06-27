@@ -1,3 +1,22 @@
 .App {
   text-align: center;
 }
+
+.header {
+  background-color: #282c34;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.content {
+  background-color: #1d2025;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+}
