@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+
+# Virtual Environment
+venv/
+.env/
+
+# IDE
+.vscode/
+
+# Dependency directories
+node_modules/
