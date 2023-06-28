@@ -21,14 +21,23 @@ const SpotRatesComponent = () => {
       setSpotRates(data.spot_rates);
     });
 
-    const data = {
-      base: ["USD"],
-      quote: ["EUR"],
+    const fetchSpotRates = () => {
+      const data = {
+        base: ["USD"],
+        quote: ["EUR"],
+      };
+
+      socket.emit("fetch_spot_rates", data);
     };
 
-    socket.emit("fetch_spot_rates", data);
+    // Fetch spot rates immediately
+    fetchSpotRates();
+
+    // Fetch spot rates every second
+    const interval = setInterval(fetchSpotRates, 5000);
 
     return () => {
+      clearInterval(interval);
       socket.disconnect();
     };
   }, []);
