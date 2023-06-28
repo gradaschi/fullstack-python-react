@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
-import TaskStarter from "./components/TaskStarter";
-import LogViewer from "./components/LogViewer";
 import { Typography } from "@mui/material";
 import { useWindowWidth } from "./hooks/useWindowsWidth";
+import { Routes, Route, Link } from "react-router-dom";
+import WebSocket from "./pages/WebSocket";
+import SpotRatesPage from "./pages/SpotRatesPage";
+import { Button } from "@mui/material";
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -17,6 +19,26 @@ function App() {
           Prova de Desenvolvimento de Aplicação Web com Comunicação em Tempo
           Real
         </Typography>
+        <div
+          style={{
+            display: "flex",
+            width: "30%",
+            justifyContent: "space-between",
+            flexDirection: windowWidth < 900 ? "column" : "row",
+          }}
+        >
+          <Button component={Link} to="/" variant="contained" color="primary">
+            WebSocket
+          </Button>
+          <Button
+            component={Link}
+            to="/api"
+            variant="contained"
+            color="primary"
+          >
+            Spot Rates
+          </Button>
+        </div>
       </div>
       <div
         className="content"
@@ -24,8 +46,10 @@ function App() {
           flexDirection: windowWidth < 900 ? "column" : "row",
         }}
       >
-        <TaskStarter />
-        <LogViewer />
+        <Routes>
+          <Route path="/" element={<WebSocket />} />
+          <Route path="/api" element={<SpotRatesPage />} />
+        </Routes>
       </div>
     </div>
   );
